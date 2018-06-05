@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Rick Roll</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+<h1 id="title">Rick Roll</h1>
+
+<video src="https://www.cs.tufts.edu/comp/20/rickroll.mp4" id="rickroll" controls></video>
+<div id="lyrics"></div>
+
+<script>
+        var video = document.getElementById("rickroll");
+        var lyrics = document.getElementById("lyrics");
+
+        video.addEventListener("timeupdate", function() {
+                if (video.currentTime > 18 && video.currentTime < 21) {
+                        lyrics.innerHTML = "<h3>We're no strangers to love</h3>";
+                } else if (video.currentTime > 22 && video.currentTime < 26.5) {
+                        lyrics.innerHTML = "<h3>You know the rules and so do I</h3>";
+                } else if (video.currentTime > 27 && video.currentTime < 30) {
+                        lyrics.innerHTML = "<h3>A full commitment's what I'm thinking of</h3>";
+                } else if (video.currentTime > 31 && video.currentTime < 35) {
+                        lyrics.innerHTML = "<h3>You wouldn't get this from any other guy</h3>";
+                } else if (video.currentTime > 35 && video.currentTime < 39) {
+                        lyrics.innerHTML = "<h3>I just wanna tell you how I'm feeling</h3>";
+                } else if (video.currentTime > 40 && video.currentTime < 42) {
+                        lyrics.innerHTML = "<h3>Gotta make you understand</h3>";
+                } else if (video.currentTime > 43 && video.currentTime < 44.5) {
+                        lyrics.innerHTML = "<h3>Never gonna give you up</h3>";
+                } else if (video.currentTime > 45 && video.currentTime < 46) {
+                        lyrics.innerHTML = "<h3>Never gonna let you down</h3>";
+                } else if (video.currentTime > 47 && video.currentTime < 50.5) {
+                        lyrics.innerHTML = "<h3>Never gonna run around and desert you</h3>";
+                } else if (video.currentTime > 51 && video.currentTime < 53) {
+                        lyrics.innerHTML = "<h3>Never gonna make you cry</h3>";
+                } else if (video.currentTime > 53.5 && video.currentTime < 55) {
+                        lyrics.innerHTML = "<h3>Never gonna say goodbye</h3>";
+                }  else if (video.currentTime > 55.5 && video.currentTime < 59) {
+                        lyrics.innerHTML = "<h3>Never gonna tell a lie and hurt you</h3>";
+                } 
+
+        });
+
+
+</script>
+</body>
+</html> 
