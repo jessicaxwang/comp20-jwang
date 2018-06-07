@@ -18,13 +18,11 @@
         var lyrics = document.getElementById("lyrics");
 
         video.addEventListener("timeupdate", function() {
-                if (video.currentTime > 0 && video.currentTime < 18) {
-                        lyrics.innerHTML = "";
-                } else if (video.currentTime > 18 && video.currentTime < 34) {
+                if (video.currentTime > 18 && video.currentTime < 34) {
                         lyrics.innerHTML = "We're no strangers to love<br>You know the rules and so do I<br>A full commitment's what I'm thinking of<br>You wouldn't get this from any other guy<br>";
                 } else if (video.currentTime > 35 && video.currentTime < 42) {
                         lyrics.innerHTML = "I just wanna tell you how I'm feeling<br>Gotta make you understand<br>";
-                } else if (video.currentTime > 43 && video.currentTime < 59) {
+                } else if (video.currentTime > 42 && video.currentTime < 59) {
                         lyrics.innerHTML = "Never gonna give you up<br>Never gonna let you down<br>Never gonna run around and desert you<br>Never gonna make you cry<br>Never gonna say goodbye<br>Never gonna tell a lie and hurt you<br>";
                 } else if (video.currentTime > 60 && video.currentTime < 76) {
                         lyrics.innerHTML = "We've known each other for so long<br>Your heart's been aching, but<br>You're too shy to say it<br>Inside, we both know what's been going on<br>We know the game and we're gonna play it<br>";
