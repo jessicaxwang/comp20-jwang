@@ -1,1 +1,17 @@
-/* Your CSS here... */
+body {
+  background-color: #D0E1F9;
+}
+h1 {
+  font-family: "Courier New", Courier;
+  font-size: 40px;
+  font-style: italic;
+  background-color: #D0E1F9;
+  text-align: center;
+}
+#messages {
+  font-family: "Courier New", Courier;
+  font-size: 25px;
+  font-style: italic;
+  text-align: center;
+  background-color: #B8E9F7;
+}

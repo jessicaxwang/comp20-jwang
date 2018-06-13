@@ -1,1 +1,22 @@
-// Your JavaScript goes here...
+function parse() {
+  var request = new XMLHttpRequest();
+  request.open("GET", "https://messagehub.herokuapp.com/messages.json", true);
+  request.onreadystatechange = function() {
+    if (request.readyState == 4 && request.status == 200) {
+      request = request.responseText;
+      message = JSON.parse(request);
+      elem = document.getElementById("messages");
+
+      output = "";
+      for (count = 0; count < message.length; count++) {
+        output += "<p>" + message[count].content + ' ' + message[count].username + "</p>";
+      }
+
+      elem.innerHTML = output;
+    } else if (request.readyState == 4 && request.status == 200) {
+      document.getElementById("messages").innerHTML = "<p>Something went wrong</p>";
+    }
+  };
+
+  request.send(null);
+}
