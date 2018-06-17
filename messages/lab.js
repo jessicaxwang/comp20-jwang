@@ -1,6 +1,6 @@
 function parse() {
   var request = new XMLHttpRequest();
-  request.open("GET", "https://messagehub.herokuapp.com/messages.json", true);
+  request.open("GET", "data.json", true);
   request.onreadystatechange = function() {
     if (request.readyState == 4 && request.status == 200) {
       request = request.responseText;
@@ -13,8 +13,6 @@ function parse() {
       }
 
       elem.innerHTML = output;
-    } else if (request.readyState == 4 && request.status == 200) {
-      document.getElementById("messages").innerHTML = "<p>Something went wrong</p>";
     }
   };
 
