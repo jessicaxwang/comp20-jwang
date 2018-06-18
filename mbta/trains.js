@@ -120,21 +120,23 @@ for (var i = 0; i < total_length; i++) {
      request.send();
    });
   
-  /* Set polylines */
-  if (i < 16) {
-   polyline = new google.maps.Polyline({
-      path: ashmontPath,
-     strokeColor: 'red'
-    });
-  } else {
-    polyline = new google.maps.Polyline({
-      path: braintreePath,
-      strokeColor: 'red'
-    });
-  }
-
-  polyline.setMap(map);
 }
+/* Set polylines */
+ashmontLine = new google.maps.Polyline({
+    path: ashmontPath,
+    strokeColor: 'red',
+    strokeOpacity: 0.6,
+    strokeWeight: 2
+  });
+braintreeLine = new google.maps.Polyline({
+    path: braintreePath,
+    strokeColor: 'red',
+    strokeOpacity: 0.6,
+    strokeWeight: 2
+  });
+
+ashmontLine.setMap(map);
+braintreeLine.setMap(map);
 
 /* Set geolocation */
 if (navigator.geolocation) {
@@ -179,12 +181,14 @@ if (navigator.geolocation) {
       closest_station.getPosition()
     ]
 
-    polyline = new google.maps.Polyline({
+    myLine = new google.maps.Polyline({
       path: shortestPath,
-      strokeColor: '#399CB9'
+      strokeColor: '#399CB9',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
   })
 
-  polyline.setMap(map);
+  myLine.setMap(map);
 
 });
 }
