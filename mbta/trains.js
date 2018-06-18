@@ -3,7 +3,7 @@ var j = 0;
 var icon = 'redline.png';
 var infoWindow = new google.maps.InfoWindow();
 
-var ashmont = [
+var stations = [
 {name: "Alewife", coords: {lat: 42.395428, lng: -71.142483}, stop_id: "place-alfcl"},
 {name: "Davis", coords: {lat: 42.39674, lng: -71.121815}, stop_id: "place-davis"},
 {name: "Porter Square", coords: {lat: 42.3884, lng: -71.11914899999999}, stop_id: "place-portr"},
@@ -21,10 +21,6 @@ var ashmont = [
 {name: "Fields Corner", coords: {lat: 42.300093, lng: -71.061667}, stop_id: "place-fldcr"},
 {name: "Shawmut", coords: {lat: 42.29312583, lng: -71.06573796000001}, stop_id: "place-smmnl"},
 {name: "Ashmont", coords: {lat: 42.284652, lng: -71.06448899999999}, stop_id: "place-asmnl"},
-]
-
-var braintree = [
-{name: "JFK/Umass", coords: {lat: 42.320685, lng: -71.052391}, stop_id: "place-jfk"},
 {name: "North Quincy", coords: {lat: 42.275275, lng: -71.029583}, stop_id: "place-nqncy"},
 {name: "Wollaston", coords: {lat: 42.2665139, lng: -71.0203369}, stop_id: "place-wlsta"},
 {name: "Quincy Center", coords: {lat: 42.251809, lng: -71.005409}, stop_id: "place-qnctr"},
@@ -34,55 +30,57 @@ var braintree = [
 
 /* Polyline paths */
 var ashmontPath = [
-  ashmont[0].coords,
-  ashmont[1].coords,
-  ashmont[2].coords,
-  ashmont[3].coords,
-  ashmont[4].coords,
-  ashmont[5].coords,
-  ashmont[6].coords,
-  ashmont[7].coords,
-  ashmont[8].coords,
-  ashmont[9].coords,
-  ashmont[10].coords,
-  ashmont[11].coords,
-  ashmont[12].coords,
-  ashmont[13].coords,
-  ashmont[14].coords,
-  ashmont[15].coords,
-  ashmont[16].coords
+  stations[0].coords,
+  stations[1].coords,
+  stations[2].coords,
+  stations[3].coords,
+  stations[4].coords,
+  stations[5].coords,
+  stations[6].coords,
+  stations[7].coords,
+  stations[8].coords,
+  stations[9].coords,
+  stations[10].coords,
+  stations[11].coords,
+  stations[12].coords,
+  stations[13].coords,
+  stations[14].coords,
+  stations[15].coords,
+  stations[16].coords
 ]
 
 var braintreePath = [
-  braintree[0].coords,
-  braintree[1].coords,
-  braintree[2].coords,
-  braintree[3].coords,
-  braintree[4].coords,
-  braintree[5].coords,
+  stations[12].coords,
+  stations[17].coords,
+  stations[18].coords,
+  stations[19].coords,
+  stations[20].coords,
+  stations[21].coords,
 ]
+
+/* Array of markers */
+var stopMarkers = [];
 
 var map;
 map = new google.maps.Map(document.getElementById("map"), {
-  center: ashmont[9].coords,
-  zoom: 13
+  center: stations[9].coords,
+  zoom: 12
 });
 
-var total_length =  ashmont.length + braintree.length + 1;
+var total_length =  stations.length;
 for (var i = 0; i < total_length; i++) {
-  /* Don't double-mark JFK/UMass */
-   if (i < ashmont.length) {
     /* Make a marker, put it on the map */
-    marker = new google.maps.Marker({position: ashmont[i].coords, 
+    marker = new google.maps.Marker({position: stations[i].coords, 
       map: map, 
       icon: icon,
 
       /* Custom attributes */
-      stop_id: ashmont[i].stop_id,
-      station_name: ashmont[i].name
+      stop_id: stations[i].stop_id,
+      station_name: stations[i].name
 
     });
     marker.setMap(map);
+    stopMarkers.push(marker);
 
     /* Get train schedule data */ 
     marker.addListener('click', function() {
@@ -99,10 +97,17 @@ for (var i = 0; i < total_length; i++) {
         today = new Date().toLocaleString().substr(0,9);
 
         content = "<h4>Arrival Times for " + marker.get('station_name') + " on " + today + ":</h4>";
-        for (var k = 0; k < schedule.data.length; k++) {
-          time = new Date(schedule.data[k].attributes.arrival_time).toString().substr(15, 9);
-          content += "<li>" + time + "</li>";
+
+        /* Wollaston is currently unavailable */
+        if (marker.get('station_name') != "Wollaston") {
+          for (var k = 0; k < schedule.data.length; k++) {
+            time = new Date(schedule.data[k].attributes.arrival_time).toString().substr(15, 9);
+            content += "<li>" + time + "</li>";
+          }
+        } else {
+          content += "This station is currently under construction!";
         }
+
         infoWindow.setContent(content);
         infoWindow.open(map, marker);
 
@@ -114,55 +119,9 @@ for (var i = 0; i < total_length; i++) {
 
      request.send();
    });
-
-   } else {
-    if (i != ashmont.length) {
-      marker = new google.maps.Marker({position: braintree[j].coords, 
-        map: map, 
-        icon: icon,
-
-        /* Custom attributes */
-        stop_id: braintree[j].stop_id,
-        station_name: braintree[j].name
-      });
-      marker.setMap(map);
-
-      /* Get train schedule data */ 
-      marker.addListener('click', function() {
-        marker = this;
-        var data = "https://defense-in-derpth.herokuapp.com/redline/schedule.json?stop_id=" + marker.get('stop_id');
-
-        var request = new XMLHttpRequest();
-        request.open("GET", data, true);
-        request.onreadystatechange = function() {
-        if (request.readyState == 4 && request.status == 200) {
-          request = request.responseText;
-          schedule = JSON.parse(request);
-
-          today = new Date().toLocaleString().substr(0,9);
-
-          content = "<h4>Arrival Times for " + marker.get('station_name') + " on " + today + ":</h4>";
-          for (var k = 0; k < schedule.data.length; k++) {
-            time = new Date(schedule.data[k].attributes.arrival_time).toString().substr(15, 9);
-            content += "<li>" + time + "</li>";
-          }
-          infoWindow.setContent(content);
-          infoWindow.open(map, marker);
-
-        } else if (request.readyState == 4 && request.status != 200) {
-          infoWindow.setContent("Sorry, the schedule couldn't be loaded.");
-          infoWindow.open(map, marker);
-        } 
-      }
-        request.send();
-      });
-
-      j++;
-    }
-  }
   
   /* Set polylines */
-  if (i < ashmont.length) {
+  if (i < 16) {
    polyline = new google.maps.Polyline({
       path: ashmontPath,
      strokeColor: 'red'
@@ -189,8 +148,45 @@ if (navigator.geolocation) {
     /* Get current position */
     marker = new google.maps.Marker({position: pos, map: map});
     marker.setMap(map);
-});
 
+    /* Assume Alewife is the shortest */
+    shortest_dist = google.maps.geometry.spherical.computeDistanceBetween(marker.getPosition(), stopMarkers[0].getPosition()) / 1609.34;
+    closest_station = stopMarkers[0];
+
+    /* Find the closest stop */
+    for (i = 1; i < stopMarkers.length; i++) {
+      var curr_dist = google.maps.geometry.spherical.computeDistanceBetween(marker.getPosition(), stopMarkers[i].getPosition()) / 1609.34;
+      if (curr_dist < shortest_dist) {
+        shortest_dist = curr_dist;
+        closest_station = stopMarkers[i];
+      }
+    }
+
+    /* Round to 2 dec. places */
+    shortest_dist = Math.round(shortest_dist * 100) / 100;
+
+    /* Info window displays closest station */
+    marker.addListener('click', function() {
+      marker = this;
+      content = "<h3> Closest Station </h3>" + "Your closest station is " + closest_station.get('station_name') + ", which is " + shortest_dist + " miles away!";
+      infoWindow.setContent(content);
+      infoWindow.open(map, marker);
+    });
+
+    /* Make a polyline */
+    shortestPath = [
+      marker.getPosition(),
+      closest_station.getPosition()
+    ]
+
+    polyline = new google.maps.Polyline({
+      path: shortestPath,
+      strokeColor: '#399CB9'
+  })
+
+  polyline.setMap(map);
+
+});
 }
 }
 
