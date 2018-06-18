@@ -11,10 +11,8 @@ function parse() {
       for (count = 0; count < message.length; count++) {
         output += "<p>" + message[count].content + ' ' + message[count].username + "</p>";
       }
-
       elem.innerHTML = output;
     }
   };
-
   request.send(null);
 }
