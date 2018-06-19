@@ -170,7 +170,7 @@ if (navigator.geolocation) {
     /* Info window displays closest station */
     marker.addListener('click', function() {
       marker = this;
-      content = "<h3> Closest Station </h3>" + "Your closest station is " + closest_station.get('station_name') + ", which is " + shortest_dist + " miles away!";
+      content = "<h3> Closest Station </h3>" + "Your closest station is" + closest_station.get('station_name') + ", which is " + shortest_dist + " miles away!";
       infoWindow.setContent(content);
       infoWindow.open(map, marker);
     });
