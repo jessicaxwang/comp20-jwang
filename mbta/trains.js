@@ -96,13 +96,24 @@ for (var i = 0; i < total_length; i++) {
 
         today = new Date().toLocaleString().substr(0,9);
 
-        content = "<h4>Arrival Times for " + marker.get('station_name') + " on " + today + ":</h4>";
+        content = "<h2>" + marker.get('station_name') + " (Arrivals) </h2>";
 
         /* Wollaston is currently unavailable */
         if (marker.get('station_name') != "Wollaston") {
           for (var k = 0; k < schedule.data.length; k++) {
             time = new Date(schedule.data[k].attributes.arrival_time).toString().substr(15, 9);
-            content += "<li>" + time + "</li>";
+
+            content += "<li>" + time;
+
+            direction = schedule.data[k].attributes.direction_id;
+
+            if (direction == 0 && marker.get('station_name') != "Braintree") {
+              content += " going Southbound to Ashmont/Braintree </li>";
+            } else if (direction == 1 && marker.get('station_name') != "Alewife") {
+              content += " going Northbound to Alewife </li>";
+            } else {
+              content += "</li>";
+            }
           }
         } else {
           content += "This station is currently under construction!";
@@ -170,7 +181,7 @@ if (navigator.geolocation) {
     /* Info window displays closest station */
     marker.addListener('click', function() {
       marker = this;
-      content = "<h3> Closest Station </h3>" + "Your closest station is" + closest_station.get('station_name') + ", which is " + shortest_dist + " miles away!";
+      content = "<h3> Closest Station </h3>" + "Your closest station is " + closest_station.get('station_name') + ", which is " + shortest_dist + " miles away!";
       infoWindow.setContent(content);
       infoWindow.open(map, marker);
     });
