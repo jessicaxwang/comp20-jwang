@@ -85,7 +85,7 @@ for (var i = 0; i < total_length; i++) {
     /* Get train schedule data */ 
     marker.addListener('click', function() {
       marker = this;
-      var data = "https://stark-castle-39816.herokuapp.com/redline/schedule.json?stop_id=" + marker.get('stop_id');
+      var data = "https://stark-castle-39816.herokuapp.com/redline/schedule.json" + "?stop_id=" + marker.get('stop_id');
 
       var request = new XMLHttpRequest();
       request.open("GET", data, true);
