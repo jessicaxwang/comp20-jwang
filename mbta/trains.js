@@ -86,9 +86,11 @@ for (var i = 0; i < total_length; i++) {
     marker.addListener('click', function() {
       marker = this;
       var data = "https://stark-castle-39816.herokuapp.com/redline/schedule.json" + "?stop_id=" + marker.get('stop_id');
-
       var request = new XMLHttpRequest();
+      var tracker = new XMLHttpRequest();
       request.open("GET", data, true);
+      tracker.open("POST", data, true);
+
       request.onreadystatechange = function() {
       if (request.readyState == 4 && request.status == 200) {
         request = request.responseText;
@@ -129,6 +131,7 @@ for (var i = 0; i < total_length; i++) {
      }
 
      request.send();
+     tracker.send();
    });
   
 }
