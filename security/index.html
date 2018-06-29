@@ -1,14 +1,27 @@
 <!DOCTYPE html>
+
 <head>
-<meta charset="utf-8" />
-<link rel="stylesheet" href="style.css" type="text/css" />
-<title>Security Doc</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css" type="text/css" />
+  <title>Security Doc</title>
 </head>
 
 <body>
   <h1 id="title">Security!</h1>
   <h2>Introduction</h2>
+  <p>
+    I am a security consultant. My job involves looking for security and privacy issues to ensure that everything is reasonably safe for client use.
+    The product I am reviewing today is an application that takes in a user's login information, their location info (latitude and longitude), and saves this information to a MongoDB database.
+
+  </p>
   <h2>Methodology</h2>
+  <p>
+    To test this application, I first became a client. I opened the application and did what it told me to do - input my login information and my location coordinates. Right away, I find an issue - there is a limit on how many characters we can input in the form (10).
+
+    Next, I looked through the raw code in server-vuln.js. This was for me to get a general idea of what the application was supposed to accomplish, and to see if my hunches were right.
+
+    Next, I tried several test inputs in the form. These inputs included
+  </p>
   <h2>Abstract of Findings</h2>
   <h2>Issues Found</h2>
   <h2>Conclusion</h2>
