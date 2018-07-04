@@ -2,5 +2,5 @@
 
 while true
   do
-    curl --data @blast.json  https://jordan-marsh.herokuapp.com/sendLocation
+    curl --data "login=LMAAAAO&lat=21&lng=12" https://jordan-marsh.herokuapp.com/sendLocation
 done
