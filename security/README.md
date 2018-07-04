@@ -2,7 +2,7 @@
 
 Everything has been correctly implemented.
 
-For this assignment, I talked with my friend and classmate Michael Thramann quite a bit. We shared our tactics for how to best destroy the web app, as well as what security issues we both were looking at. I also credit this webpage for my idea to insert deserialized JSON into the database:
+For this assignment, I talked with my classmate (and friend) Michael Thramann quite a bit. We shared our tactics for how to best destroy the web app, as well as what security issues we both were looking at. I also credit this webpage for my idea to insert deserialized JSON into the database:
 https://blog.websecurify.com/2014/08/hacking-nodejs-and-mongodb.html
 Gabe Joseph's Spring 2013 report also helped immensely.
 
