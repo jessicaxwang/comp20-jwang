@@ -6,6 +6,6 @@ For this assignment, I talked with my classmate (and friend) Michael Thramann qu
 https://blog.websecurify.com/2014/08/hacking-nodejs-and-mongodb.html .
 Gabe Joseph's Spring 2013 report also helped immensely.
 
-*SIDENOTE: While I tried all that I could to find loopholes in this web app, I realize that I could have built my own, local version to work with. That way, I could have peered into the database itself. I will keep this in mind the next time I perform a security assessment, whether in industry or for an assignment.*
+*SIDENOTE: While I tried all that I could to find loopholes in this web app, I do realize now that I could have built my own, local version to work with. That way, I could have peered into the database itself. I will keep this in mind the next time I perform a security assessment, whether in industry or for an assignment.*
 
 Approximately 4 hours spent.
