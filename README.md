@@ -4,21 +4,21 @@
 This git repository contains all of my assignments for my Web Progamming class, taken in the summer of 2018. You can find:
 
 * MBTA
-This application uses the Google Maps API to map the MBTA Red Line and updates their schedules in real time. The application also tells the client the T stop closest to their current location, as well as tracks the most
+  * This application uses the Google Maps API to map the MBTA Red Line and updates their schedules in real time. The application also tells the client the T stop closest to their current location, as well as tracks the most
 popular stations clicked through a database in MongoDB. 
 I also implemented its server using Node JS, Heroku.
 
 * Messages
-This assignment explores how XMLHttpRequests work, as well as how to parse JSON data.
+  * This assignment explores how XMLHttpRequests work, as well as how to parse JSON data.
 
 * Responsive
-This assignment explores media queries and CSS Sprites.
+  * This assignment explores media queries and CSS Sprites.
 
 * Rickroll
-This is an annotated video of every stanza of "Never Gonna Give You Up" by Rick Astley.
+  * This is an annotated video of every stanza of "Never Gonna Give You Up" by Rick Astley.
 
 * Security 
-This webpage explores the security vulnerabilities found in a web application. Read it to see me break things!
+  * This webpage explores the security vulnerabilities found in a web application. Read it to see me break things!
 
 ## What I Enjoyed
 I particularly enjoyed the 'security' assignment, as it was something I had never done before. Security, for me, used to be an afterthought - after 
